@@ -1,25 +1,22 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useState } from "react";
-import {useSelector, useDispatch} from "react-redux";
-
-import {deleteRecipe } from "../store";
 
 function RecipeDetail() {
   const { id } = useParams();
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+  const recipe = {
+    id: '1',
+    name: 'Spaghetti Bolognese',
+    ingredients: ['spaghetti', 'minced beef', 'onion', 'garlic', 'tomato sauce', 'olive oil', 'carrot'],
+    category: 'Italian'
+  }
+
   const [editing, setEditing] = useState(false);
-  const recipe = useSelector((state) =>
-    state.recipes.find((recipe) => recipe.id === id)
-  );
 
   function handleSave() {
-
   }
 
   function handleDelete() {
-    dispatch(deleteRecipe(id));
-    navigate("/");
   }
 
   function handleAddIngredient() {

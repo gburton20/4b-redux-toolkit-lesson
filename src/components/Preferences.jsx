@@ -1,14 +1,8 @@
-import {useSelector, useDispatch} from "react-redux";
-
-import {toggleView} from "../store";
-
 function Preferences() {
-  const dispatch = useDispatch();
-  const view = useSelector((state) => state.preferences.view);
-  const units = useSelector((state) => state.preferences.units);
+  const view = 'list';
+  const units = 'metric':
 
   function handleToggleView() {
-    dispatch(toggleView());
   }
 
   function handleToggleUnits() {
