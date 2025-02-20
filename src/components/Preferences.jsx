@@ -1,8 +1,15 @@
+import { useSelector, useDispatch } from "react-redux";
+import { toggleView } from "../store";
+
 function Preferences() {
-  const view = 'list';
-  const units = 'metric':
+  const dispatch = useDispatch();
+  const view = useSelector((state) => state.preferences.view);
+  const units = 'metric';
 
   function handleToggleView() {
+    // If I dispatch toggleView(), this will be translated into an order our chef, store.js, will understand
+    // toggleView returns an object with type toggleView
+    dispatch(toggleView())
   }
 
   function handleToggleUnits() {

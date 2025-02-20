@@ -1,29 +1,13 @@
 import { Link } from "react-router-dom";
-import RecipeItem from "./RecipeItem";
+import { useSelector } from "react-redux";
 
-const recipes = [
-    {
-        id: '1',
-        name: 'Spaghetti Bolognese',
-        ingredients: ['spaghetti', 'minced beef', 'onion', 'garlic', 'tomato sauce', 'olive oil', 'carrot'],
-        category: 'Italian'
-    },
-    {
-        id: '2',
-        name: 'Chicken Curry',
-        ingredients: ['chicken', 'curry powder', 'onion', 'garlic', 'coconut milk', 'ginger', 'tomato'],
-        category: 'Indian'
-    },
-    {
-        id: '3',
-        name: 'Caesar Salad',
-        ingredients: ['romaine lettuce', 'croutons', 'parmesan cheese', 'chicken breast', 'caesar dressing', 'lemon'],
-        category: 'Salad'
-    },
-];
+import RecipeItem from "./RecipeItem";
 import RecipeForm from "./RecipeForm";
+import Preferences from "./Preferences";
 
 function RecipeList() {
+  const recipes = useSelector((state) => state.recipes);
+  const view = useSelector((state) => state.preferences.view);
   const listStyles = {
     display: "flex",
     flexDirection: "column",
@@ -41,7 +25,8 @@ function RecipeList() {
       <h3>Add a recipe</h3>
       <RecipeForm />
       <h1>Recipes</h1>
-      <div style={gridStyles}>
+      <Preferences />
+      <div style={view === 'list' ? listStyles : gridStyles }>
         {recipes.map((recipe) => (
           <Link key={recipe.id} to={`/recipe/${recipe.id}`}>
             <RecipeItem recipe={recipe} />
